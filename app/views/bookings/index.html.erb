@@ -1,0 +1,67 @@
+<body>
+
+<h1>DUTY BOOKER APP</h1>
+
+
+
+<table>
+<%= form_tag bookings_path, method: 'get' do %>
+
+  <tbody>
+    <tr>
+      <td><%= label_tag "year:"%></td>
+      <td><%= select_tag "year", options_for_select(@years, selected: @year), prompt: "year"%></td> 
+      <td><%= label_tag "month:"%>
+      <td><%= select_tag "month", options_for_select(@months, selected: @month), prompt: "month" %></td>
+      <td><%= submit_tag "submit period", :name => nil, class: "button" %></td>
+      <% end %>
+    </tr>  
+  </tbody> 
+</table>
+
+<%= form_tag bookings_path, method: 'get' do %>
+<table>
+   <tbody>
+     <tr>
+  
+    <td><%= select_tag "look[shift_id]", options_for_select(@shifts),  prompt: "Shift" %></td>
+    <td><%= select_tag "look[editor_id]", options_for_select(@editors), prompt: "Editor" %></td>
+    <td><%= select_tag "look[typist_id]", options_for_select(@typists), prompt: "Typist" %></td>
+    <td><%= select_tag  "look[reader_id]", options_for_select(@readers), prompt: "Reader" %></td>
+    <td><%= submit_tag "filter bookings", :name => nil, class: "button" %></td>
+<% end %>
+     </tr> 
+   <tbody>
+</table>
+
+<table id = "bookings">
+  <thead>
+    <tr>
+      <th >date</th>
+      <th >shift</th>
+      <th >editor</th>
+      <th >typist</th>
+      <th >reader</th>
+      <th >edit_link</th>
+     </tr>
+  </thead>
+  <tbody>
+      <% @bookings.each do |b| %>
+          <% editor  = b.editor ? b.editor.name : "    ----" %>
+          <% typist  = b.typist ? b.typist.name : "    ----" %>
+          <% reader  = b.reader ? b.reader.name : "    ----" %>
+         <tr>
+          <td><%= b.date %></td>
+          <td><%= b.shift.name %></td>
+          <td><%= editor %></td>
+          <td><%= typist %></td>
+          <td><%= reader %></td>
+          <td><%= link_to 'change', edit_booking_path(b) %></td>
+         <% end %> 
+         </tr>  
+  </tbody> 
+
+</table>
+</body>
+      
+      

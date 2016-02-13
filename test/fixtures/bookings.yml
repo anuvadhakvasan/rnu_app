@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-02-13
+  shift_id: 
+  editor_id: 
+  typist_id: 
+  reader_id: 
+
+two:
+  date: 2016-02-13
+  shift_id: 
+  editor_id: 
+  typist_id: 
+  reader_id: 

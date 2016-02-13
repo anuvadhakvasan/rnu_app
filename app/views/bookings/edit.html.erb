@@ -1,6 +1,40 @@
-<h1>Editing Booking</h1>
+<%= form_tag booking_path(@booking), :method => :put do %>
 
-<%= render 'form' %>
+    <h2>Shift Details(not to be changed):</h2> 
+   
+    <%= date_select :booking, :date, selected: @booking.date %>
+    
+   
+    <%= select_tag "booking[shift_id]", options_for_select(@shifts, selected: @booking.shift_id),  prompt: "Shift" %>
+    <h2>Edit Officers for the Shift:</h2> 
+ <table> 
+   <tbody>    
+      <tr>
+    <td><%= label_tag "editor:"%></td>
+    <td><%= select_tag "booking[editor_id]", options_for_select(@editors, selected: @booking.editor_id), prompt: "Editor" %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag "typist:"%></td>
+      <td><%= select_tag "booking[typist_id]", options_for_select(@typists, selected: @booking.typist_id), prompt: "Typist" %></td>
+ 
+ </tr>
+ <tr>
+    <td><%= label_tag "reader:"%></td>
+      <td><%= select_tag "booking[reader_id]", options_for_select(@readers,  selected: @booking.reader_id), prompt: "Reader" %></td>
+   </tr>
+
+ <tr>
+    <td><%= submit_tag "edit", :name => nil, class: "button" %></td>
+  </tr>
+  
+<% end %>
+     
+   <tbody>
+</table>
 
 <%= link_to 'Show', @booking %> |
+<%= link_to 'Back', bookings_path %>
+
+
+
 <%= link_to 'Back', bookings_path %>
